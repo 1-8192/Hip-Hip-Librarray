@@ -1,0 +1,20 @@
+<ol>
+  <a href="/authors"> Authors Index Page </a><br>
+  <a href="/books"> Books Index Page </a>
+</ol>
+---------------------------------------------------------------------------------------------------------------------------------
+
+<h1> <%= @author.name %> (b.<%=@author.birth_year%>)</h1>
+
+Books:
+<ul>
+  <% @author.books.each do |book| %>
+  <li> <%= link_to book.title, book %></li>
+  <% end %>
+</ul>
+
+<a href="/authors/<%=@author.id%>/edit">Edit <%=@author.name%></a><br>
+
+<%= form_tag author_path(@author.id), method: "delete" do %>
+  <%= submit_tag "Delete #{@author.name}" %>
+<% end %>

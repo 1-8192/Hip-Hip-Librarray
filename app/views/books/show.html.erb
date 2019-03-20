@@ -1,0 +1,29 @@
+<ol>
+  <a href="/authors"> Authors Index Page </a><br>
+  <a href="/books"> Books Index Page </a>
+</ol>
+---------------------------------------------------------------------------------------------------------------------------------
+
+<h1><%=@book.title%> (<%=@book.pages%> pages)</h1>
+
+<h2>Authors:</h2>
+
+<ul>
+  <%@book.authors.each do |author| %>
+  <li>
+    <a href="/authors/<%=author.id%>"><%=author.name%> (b. <%=author.birth_year%>)</a>
+    <%= form_tag books_path(@book.id)_x, method: "delete" do %>
+    <%= submit_tag "Remove author" %>
+    <% end %>
+  </li>
+  <%end%>
+</ul>
+
+<div>
+  Author
+  <%= form_for :authors_book, url: book_authors_books_path(@book.id) do |f|%>
+  <%= f.collection_select :author_id, Author.all, :id, :name, {prompt: "Hey this is a cool name!"} %>
+  <%= f.submit value="Add author"%>
+  <% end %>
+  </form>
+</div>
