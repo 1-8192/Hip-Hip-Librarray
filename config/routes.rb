@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :books do resources :authors_books, only: [:create, :destroy] end
+  resources :books, only: [:index, :show] do resources :authors_books, only: [:create, :destroy] end
   resources :authors
 
   root to: 'homes#welcome'

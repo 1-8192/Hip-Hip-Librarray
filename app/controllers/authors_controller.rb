@@ -13,8 +13,9 @@ class AuthorsController < ApplicationController
     if @author.valid?
       @author.save
       redirect_to @author
-    end
+    else
     render :new
+  end 
   end
 
   def show
@@ -27,8 +28,11 @@ class AuthorsController < ApplicationController
 
   def update
     @author = Author.find(params[:id])
-    @author.update(author_params)
-    redirect_to @author
+    if @author.update(author_params)
+      redirect_to @author
+    else
+      render :edit
+    end
   end
 
   def destroy
